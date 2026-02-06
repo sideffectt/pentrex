@@ -28,7 +28,7 @@ AI-powered cybersecurity learning assistant. Quiz yourself, explore attack techn
 ## 📦 Quick Start
 
 ```bash
-git clone https://github.com/sideffect0/pentrex.git
+git clone https://github.com/sideffectt/pentrex.git
 cd pentrex
 
 pip install -r requirements.txt
