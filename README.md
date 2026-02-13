@@ -1,6 +1,6 @@
 # Pentrex
 <p align="center">
-  <img src="assets/main.png" width="100%" />
+  <img src="assets/main.png" width="%80" />
 </p>
 
 AI-powered penetration testing agent with multi-agent crew mode. Autonomous reconnaissance, scanning, vulnerability analysis, and exploitation through coordinated AI workers.
