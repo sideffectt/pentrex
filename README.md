@@ -58,12 +58,14 @@ pentrex run --playbook web_recon -t example.com  # Run playbook
 |------|---------|-------------|
 | Assist | (default) | Chat with the agent. You control the flow. |
 | Agent | `/agent <task>` | Autonomous single-task execution. |
+| Crew | `/crew <task>` | Multi-agent mode. Orchestrator + specialized workers. |
 | Learn | `/learn` | Quiz, explanations, tool guides. |
 
 ## TUI Commands
 
 ```
 /agent <task>    Autonomous agent on a task
+/crew <task>     Multi-agent crew mode
 /target <host>   Set target
 /tools           List available tools
 /notes           Show saved findings

@@ -5,7 +5,7 @@ import json
 import signal
 
 from pentrex.config import Config
-from pentrex.agents import AssistAgent, AutoAgent
+from pentrex.agents import AssistAgent, AutoAgent, Crew
 from pentrex.tools import get_tool_names
 from pentrex.tools.notes import _load_notes
 from pentrex.playbooks import list_playbooks, build_playbook_task
@@ -43,6 +43,7 @@ BANNER = f"""
 HELP_TEXT = f"""
   {C.YELLOW}{C.BOLD}Commands:{C.RESET}
     {C.GREEN}/agent <task>{C.RESET}     Run autonomous agent on task
+    {C.GREEN}/crew <task>{C.RESET}      Multi-agent crew mode
     {C.GREEN}/target <host>{C.RESET}    Set target
     {C.GREEN}/tools{C.RESET}            List available tools
     {C.GREEN}/notes{C.RESET}            Show saved findings
@@ -164,6 +165,26 @@ def handle_command(cmd: str, args: str, assist: AssistAgent, config: Config) -> 
         except KeyboardInterrupt:
             auto.stop()
             result = "[Agent stopped by user]"
+        return f"\n{format_output(result)}"
+
+    elif cmd == "crew":
+        if not args:
+            return f"  Usage: /crew <task description>"
+        if not assist.target:
+            return f"  {C.RED}Set a target first: /target <host>{C.RESET}"
+        crew = Crew(config)
+        crew.target = assist.target
+        print(f"\n  {C.MAGENTA}{C.BOLD}Crew mode: {args}{C.RESET}")
+        print(f"  {C.DIM}Orchestrator + Workers • Press Ctrl+C to stop{C.RESET}\n")
+
+        def on_step(msg):
+            print(f"  {C.DIM}{msg}{C.RESET}")
+
+        try:
+            result = crew.run(args, on_step=on_step)
+        except KeyboardInterrupt:
+            crew.stop()
+            result = "[Crew stopped by user]"
         return f"\n{format_output(result)}"
 
     elif cmd == "mcp":

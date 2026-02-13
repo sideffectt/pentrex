@@ -7,6 +7,9 @@ from pentrex.tools import get_all_tools, run_tool
 from pentrex.tools.notes import _load_notes
 from pentrex.knowledge.prompts import build_system_prompt
 
+# Re-export Crew
+from pentrex.agents.crew import Crew
+
 
 class AssistAgent:
     """Interactive chat agent — user controls the flow."""

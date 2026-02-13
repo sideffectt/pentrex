@@ -38,6 +38,12 @@ Be methodical. Don't repeat failed commands. Adapt based on results.
 """
 
 
+def build_crew_prompt(target: str = "", task: str = "", notes: list = None) -> str:
+    """Build orchestrator prompt (used by crew module directly)."""
+    # Crew module handles its own prompts
+    pass
+
+
 def build_system_prompt(mode: str = "assist", target: str = "", task: str = "", notes: list = None) -> str:
     """Build the appropriate system prompt."""
     target_context = f"Current target: {target}" if target else "No target set. Ask the user or use /target to set one."
