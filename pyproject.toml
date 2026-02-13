@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pentrex"
+version = "2.0.0"
+description = "AI-powered penetration testing agent"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [{name = "sideffect"}]
+
+dependencies = [
+    "anthropic>=0.39.0",
+    "litellm>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "rich>=13.0.0",
+    "prompt-toolkit>=3.0.0",
+]
+
+[project.optional-dependencies]
+all = [
+    "chromadb>=0.4.0",
+    "sentence-transformers>=2.0.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+pentrex = "pentrex.interface.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pentrex*"]
